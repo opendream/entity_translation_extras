@@ -1,0 +1,10 @@
+name = Entity Translation Extras
+description = Provide more features such as views filter.
+package = Multilingual - Entity Translation
+core = 7.x
+
+dependencies[] = entity_translation
+
+files[] = entity_translation_extras.module
+files[] = views/entity_translation_extras.views.inc
+files[] = views/views_handler_filter_entity_translation_node_language.inc
