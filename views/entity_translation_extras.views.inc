@@ -10,6 +10,21 @@ function entity_translation_extras_views_data_alter(&$data) {
   );
 }
 function entity_translation_extras_views_query_alter(&$view, &$query) {
+  if (!$query->tables['node']) {
+    return FALSE;
+  }
+
+  foreach($query->where as $con) {
+    foreach ($con['conditions'] as $condition) {
+      if ($condition['field'] == 'node.type') {
+        foreach ($condition['value'] as $type) {
+          if (!variable_get('language_content_type_'.$type, FALSE)) {
+            return FALSE;
+          }   
+        }   
+      }   
+    }   
+  }
   global $user;
 
   $join = new views_join;
